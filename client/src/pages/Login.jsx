@@ -1,6 +1,6 @@
-import { Box, TextField } from "@material-ui/core";
+import { Box, TextField } from "@mui/material";
 import { useState } from "react";
-import { LoadingButton } from "@mui/lab";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,14 @@ const Login = () => {
           type="password"
           disabled={loading}
         />
-        <LoadingButton>
+        <LoadingButton
+          sx={{ mt: 3, mb: 2 }}
+          variant="outlined"
+          fullWidth
+          color="success"
+          type="submit"
+          loading={loading}
+        >
           Login
         </LoadingButton>
       </Box>
