@@ -1,6 +1,7 @@
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -40,6 +41,9 @@ const Login = () => {
           Login
         </LoadingButton>
       </Box>
+      <Button component={Link} to="/signup" sx={{ textTransform: "none" }}>
+        Don't have an account? Signup for free
+      </Button>
     </>
   );
 };
