@@ -2,6 +2,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { Link, useNavigate } from "react-router-dom";
+import authApi from "../api/authApi";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
@@ -45,6 +46,38 @@ const Signup = () => {
     }
 
     if (err) return;
+
+    setLoading(true);
+
+    try {
+      const res = await authApi.signup({
+        username,
+        password,
+        confirmPassword,
+      });
+
+      setLoading(false);
+
+      localStorage.setItem("token", res.token);
+
+      navigate("/");
+    } catch (err) {
+      const errors = err.data.errors;
+      errors.forEach((e) => {
+        if (e.param === "username") {
+          setUsernameErrText(e.msg);
+        }
+
+        if (e.param === "password") {
+          setPasswordErrText(e.msg);
+        }
+
+        if (e.param === "confirmPassword") {
+          setConfirmPasswordErrText(e.msg);
+        }
+      });
+      setLoading(false);
+    }
   };
 
   return (
