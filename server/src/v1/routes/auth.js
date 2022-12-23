@@ -6,21 +6,23 @@ const tokenHandler = require('../handlers/tokenHandler');
 const User = require('../models/user');
 
 router.post(
-    '/signup', 
-    body('username').isLength({min: 8}).withMessage(
+    '/signup',
+    body('username').isLength({ min: 8 }).withMessage(
         'username must be at least 8 characters'
     ),
-    body('password').isLength({min: 8}).withMessage(
+    body('password').isLength({ min: 8 }).withMessage(
         'password must be at least 8 characters'
     ),
-    body('confirmPassword').isLength({min: 8}).withMessage(
+    body('confirmPassword').isLength({ min: 8 }).withMessage(
         'confirmPassword must be at least 8 characters'
     ),
     body('username').custom(value => {
-        return User.findOne({username: value}).then(user => {
+        return User.findOne({ username: value }).then(user => {
             if (user) {
                 return Promise.reject('username already exist');
             }
         })
     }),
-)
+    validation.validate,
+    userController.register
+);
