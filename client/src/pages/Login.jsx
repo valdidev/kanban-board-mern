@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  const handleSubmit = () => null;
+  const handleSubmit = async () => null;
 
   return (
     <>
@@ -24,9 +24,9 @@ const Login = () => {
           margin="normal"
           required
           fullWidth
-          id="username"
-          label="Username"
+          id="password"
           name="username"
+          label="Password"
           type="password"
           disabled={loading}
         />
