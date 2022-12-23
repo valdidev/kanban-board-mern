@@ -26,3 +26,23 @@ router.post(
     validation.validate,
     userController.register
 );
+
+router.post(
+    'login',
+    body('username').isLength({ min: 8 }).withMessage(
+        'username must be at least 8 characters'
+    ),
+    body('password').isLength({ min: 8 }).withMessage(
+        'password must be at least 8 characters'
+    ),
+    validation.validate,
+    userController.login
+);
+
+router.post(
+    'verify-token',
+    tokenHandler.verifyToken,
+    (req, res) => {
+        res.status(200).json({ user: req.user });
+    }
+);
