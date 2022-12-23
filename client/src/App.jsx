@@ -20,6 +20,19 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseLine>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<AuthLayout />}>
+              <Route path="login" element={<Login />} />
+              <Route path="login" element={<Signup />} />
+            </Route>
+            <Route path="/" element={<AppLayout />}>
+              <Route index element={<Home />} />
+              <Route path="boards" element={<Home />} />
+              <Route path="boards/:boardId" element={<Board />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </CssBaseLine>
     </ThemeProvider>
   );
