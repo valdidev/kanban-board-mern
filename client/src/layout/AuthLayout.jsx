@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import authUtils from "../utils/authUtils";
 import Loading from "../common/Loading";
 import { Box, Container } from "@mui/system";
@@ -7,7 +7,6 @@ import assets from "../assets";
 
 const AuthLayout = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
